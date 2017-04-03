@@ -53,3 +53,33 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+(function () {
+
+    var remote = require('remote');
+    var BrowserWindow = remote.require('browser-window');
+
+    function init() {
+        document.getElementById("min-btn").addEventListener("click", function (e) {
+            var window = BrowserWindow.getFocusedWindow();
+            window.minimize();
+        });
+
+        document.getElementById("max-btn").addEventListener("click", function (e) {
+            var window = BrowserWindow.getFocusedWindow();
+            window.maximize();
+        });
+
+        document.getElementById("close-btn").addEventListener("click", function (e) {
+            var window = BrowserWindow.getFocusedWindow();
+            window.close();
+        });
+    };
+
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            init();
+        }
+    };
+
+})();
